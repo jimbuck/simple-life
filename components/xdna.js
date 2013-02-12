@@ -1,6 +1,4 @@
-﻿var dnaActions 
-
-
+﻿
 Crafty.c('XDNA', {
 	_maxLength: 256,
 	_currentIndex: 0,
