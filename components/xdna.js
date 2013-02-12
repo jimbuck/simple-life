@@ -1,65 +1,53 @@
 ﻿
 Crafty.c('XDNA', {
-	_maxLength: 256,
-	_currentIndex: 0,
-	_oldX: null,
-	_oldY: null,
-	_actions: [
-		{
-			name: 'NOTHING',
-			cmd: function(id){
-				var entity = Crafty(id);
-				entity._oldX = entity._x;
-				entity._oldY = entity._y;
-			}
-		},
-		{
-			name: 'MOVE_UP',
-			cmd: function (id) {
-				var entity = Crafty(id);
-				entity._oldX = entity._x;
-				entity._oldY = entity._y;
-				
-				entity.y -= tileSize;
-			}
-		},
-		{
-			name: 'MOVE_RIGHT',
-			cmd: function (id) {
-				var entity = Crafty(id);
-				entity._oldX = entity._x;
-				entity._oldY = entity._y;
-				
-				entity.x += tileSize;
-			}
-		},
-		{
-			name: 'MOVE_DOWN',
-			cmd: function (id) {
-				var entity = Crafty(id);
-				entity._oldX = entity._x;
-				entity._oldY = entity._y;
-				
-				entity.y += tileSize;
-			}
-		},
-		{
-			name: 'MOVE_LEFT',
-			cmd: function (id) {
-				var entity = Crafty(id);
-				entity._oldX = entity._x;
-				entity._oldY = entity._y;
-				
-				entity.x -= tileSize;
-			}
-		}
-	],
 	init : function () {
+		this._frameStep = 8;
+		this._maxLength = 256;
+		this._currentIndex = 0;
+		this._oldX = null;
+		this._oldY = null;
+		this._actions = [
+			{
+				name: 'NOTHING',
+				cmd: function(id){
+					var entity = Crafty(id);
+					entity.trigger('Slide', [0,0]);
+				}
+			},
+			{
+				name: 'MOVE_UP',
+				cmd: function (id) {
+					var entity = Crafty(id);
+					entity.trigger('Slide', [0,-1]);
+				}
+			},
+			{
+				name: 'MOVE_RIGHT',
+				cmd: function (id) {
+					var entity = Crafty(id);
+					entity.trigger('Slide', [1,0]);
+				}
+			},
+			{
+				name: 'MOVE_DOWN',
+				cmd: function (id) {
+					var entity = Crafty(id);
+					entity.trigger('Slide', [0,1]);
+				}
+			},
+			{
+				name: 'MOVE_LEFT',
+				cmd: function (id) {
+					var entity = Crafty(id);
+					entity.trigger('Slide', [-1,0]);
+				}
+			}
+		];
 		
-		this.requires('Collision');
+		this.requires('Collision, SmoothSlide');
 		
 		this.bind('EnterFrame', function (e) {
-			if(e.frame % 8===0){
+			if(e.frame % this._frameStep===0){
 				var dir = parseInt(this._dna.charAt(this._currentIndex));
 			  var action = this._actions[dir];
 			  

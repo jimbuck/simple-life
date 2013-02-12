@@ -11,6 +11,7 @@ $(function()
 	if(renderMethod==='Canvas')
 		Crafty.canvas.init();
 
+  Crafty.settings.modify('autoPause', false);
 	Crafty.scene("loading");
 	
 	$('#startStopButton').click(function(){
