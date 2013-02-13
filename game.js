@@ -1,16 +1,18 @@
-﻿var renderMethod = 'Canvas';
+﻿var renderMethod = 'DOM';
 var tileSize = 16;
-var gameWidth = 64*tileSize;
-var gameHeight = 32*tileSize;
+var xTiles = 64;
+var yTiles = 48;
+var gameWidth = xTiles*tileSize;
+var gameHeight = yTiles*tileSize;
 
 $(function()
 {
-	$('ARTICLE').width(gameWidth+4);
+	$('ARTICLE').width(gameWidth);
 
 	Crafty.init(gameWidth, gameHeight);
 	if(renderMethod==='Canvas')
 		Crafty.canvas.init();
-
+    
   Crafty.settings.modify('autoPause', false);
 	Crafty.scene("loading");
 	

@@ -1,15 +1,13 @@
 ﻿Crafty.c('Slide', {
 	init: function(){
-		this._moveing = false;
+		this._moving = false;
 		this._vx = 0; this._destX = 0; this._sourceX = 0;
 		this._vy = 0; this._destY = 0; this._sourceY = 0;
 		this._frames = 0;
 		
 		this.bind("Slide", function(direction) {
 				
-				var slideFrames = this._frameStep;
-				
-        // Don't continue to slide if we're already moving
+				// Don't continue to slide if we're already moving
         if(this._moving) return false;
         this._moving = true;
 
@@ -23,8 +21,8 @@
         this._destY = this.y + direction[1] * tileSize;
 
         // Get our x and y velocity
-        this._vx = direction[0] * tileSize / slideFrames;
-        this._vy = direction[1] * tileSize / slideFrames;
+        this._vx = direction[0] * tileSize / this._frameStep;
+        this._vy = direction[1] * tileSize / this._frameStep;
 				
         this._frames = this._frameStep;
       }).bind("EnterFrame",function(e) {
@@ -44,5 +42,12 @@
         }
         this.trigger('Moved', {x: this.x, y: this.y});
       });
-	}
+	},
+	// A function we'll use later to 
+	// cancel our movement and send us back to where we started
+	cancelSlide: function() {
+    this.x = this._sourceX;
+    this.y = this._sourceY;
+    this._moving = false;
+  }
 });

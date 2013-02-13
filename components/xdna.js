@@ -6,6 +6,8 @@ Crafty.c('XDNA', {
 		this._currentIndex = 0;
 		this._oldX = null;
 		this._oldY = null;
+		this._logicFrame = 0;
+		this._renderFrame = 0;
 		this._actions = [
 			{
 				name: 'NOTHING',
@@ -44,7 +46,7 @@ Crafty.c('XDNA', {
 			}
 		];
 		
-		this.requires('Collision, SmoothSlide');
+		this.requires('Slide');
 		
 		this.bind('EnterFrame', function (e) {
 			if(e.frame % this._frameStep===0){
@@ -56,8 +58,6 @@ Crafty.c('XDNA', {
 			  this._currentIndex = (++this._currentIndex) % this._dna.length;
 			}
 			
-		}).onHit('XDNA', function(){
-			// Clone the object and combing thier stats.
 		});
 	},
 	xdna: function(mom, dad){
@@ -95,5 +95,13 @@ Crafty.c('XDNA', {
     this._dna = dna;
     
     return this;
+	},
+	DNA: function(newDNA){
+		if(newDNA==null){
+			return this._dna;
+		} else {
+			this._dna = newDNA;
+			return this;
+		}
 	}
 });

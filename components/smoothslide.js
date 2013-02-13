@@ -2,13 +2,15 @@
 	init: function(){
 		this._vx = 0; this._destX = null; this._sourceX = null;
 		this._vy = 0; this._destY = null; this._sourceY = null;
+		this._renderFrame = 0;
 		
 		this.bind("Slide", function(direction) {
-
+				
+				this._renderFrame++;
+				
 				var slideFrames = this._frameStep * 2;
 
         // Let's keep our pre-movement location
-        // Hey, Maybe we'll need it later :)
         this._sourceX = this.x;
         this._sourceY = this.y;
 
@@ -25,7 +27,7 @@
 				
       }).bind("EnterFrame",function(e) {
 
-        // If we're moving, update our position by our per-frame velocity
+        // Update our position by our per-frame velocity
         this.x += this._vx;
         this.y += this._vy;
         
