@@ -1,7 +1,7 @@
 ﻿
 Crafty.c('XDNA', {
 	init : function () {
-		this._frameStep = 8;
+		this._frameStep = 4;
 		this._maxLength = 256;
 		this._currentIndex = 0;
 		this._oldX = null;
@@ -50,6 +50,7 @@ Crafty.c('XDNA', {
 		
 		this.bind('EnterFrame', function (e) {
 			if(e.frame % this._frameStep===0){
+				
 				var dir = parseInt(this._dna.charAt(this._currentIndex));
 			  var action = this._actions[dir];
 			  
