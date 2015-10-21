@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"module": "commonjs",
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"out": "simple-life.js"
+	},
+	"exclude": [
+		"node_modules"
+	]
+}

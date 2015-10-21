@@ -1,0 +1,38 @@
+{
+  "name": "simple-life",
+  "version": "1.0.0",
+  "description": "0.0.1",
+  "main": "server.js",
+  "bin": {
+    "simple-life": "simple-life.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JimmyBoh/simple-life.git"
+  },
+  "keywords": [
+    "alife",
+    "artificial",
+    "life",
+    "canvas",
+    "simulation"
+  ],
+  "author": "Jim Buck <jim@jimmyboh.com> (http://jimmyboh.com/)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/JimmyBoh/simple-life/issues"
+  },
+  "homepage": "https://github.com/JimmyBoh/simple-life#readme",
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-flatten": "^0.2.0",
+    "gulp-open": "^1.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.9.2"
+  }
+}
